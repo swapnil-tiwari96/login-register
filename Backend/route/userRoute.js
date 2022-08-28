@@ -1,5 +1,6 @@
 import express from "express";
 import * as userController from '../controller/userController.js'
+import { checkAuth } from '../middleware/checkAuth.js'
 
 let router = express.Router();
 
@@ -7,6 +8,6 @@ router.post('/login', userController.login);
 
 router.post('/register', userController.register);
 
-router.get('./getData', userController.dashboard)
+router.get('./getData', checkAuth, userController.dashboard)
 
 export { router }; 
