@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"
 import './Login.css'
 import axios from 'axios'
 
-const Login = () =>
+const Login = ({ setLoginUser }) =>
 {
+    let navigate = useNavigate()
+
     const [user, setUser] = useState({
         email: "",
         password: ""
@@ -21,7 +24,12 @@ const Login = () =>
     const login = () =>
     {
         axios.post("http://localhost:3001/login", user)
-            .then(res => alert(res.data))
+            .then(res =>
+            {
+                alert(res.data.message)
+                setLoginUser(res.data.user)
+                navigate('/dashboard', { replace: true })
+            })
     }
 
     return (
@@ -30,7 +38,7 @@ const Login = () =>
             <input type="password" name="password" value={user.password} placeholder="Enter your Password" onChange={handleChange} />
             <button onClick={login}>Login</button>
             <div>or</div>
-            <button>Register</button>
+            <button onClick={() => navigate('/register')}>Register</button>
         </div>
     )
 };

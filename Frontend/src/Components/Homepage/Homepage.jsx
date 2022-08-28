@@ -3,7 +3,7 @@ import './Homepage.css'
 
 const Homepage = () =>
 {
-    return <div>Homepage</div>;
+    return <div>Lets go homepage</div>;
 };
 
 export default Homepage;

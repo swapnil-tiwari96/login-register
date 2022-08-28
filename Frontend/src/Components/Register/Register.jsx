@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"
 import axios from 'axios'
 import './Register.css'
 
 const Register = () =>
 {
+    let navigate = useNavigate()
+
     const [user, setUser] = useState({
         firstName: "",
         lastName: "",
@@ -42,7 +45,7 @@ const Register = () =>
             <input type="password" name="password" value={user.password} placeholder="Enter your Password" onChange={handleChange} />
             <button onClick={register}>Register</button>
             <div>or</div>
-            <button>Login</button>
+            <button onClick={() => navigate('/login')}>Login</button>
         </div>
     )
 };

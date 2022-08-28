@@ -1,7 +1,9 @@
 import './App.css';
+import React, { useState } from 'react';
 import Register from './Components/Register/Register';
 import Login from './Components/Login/Login';
-import Homepage from './Components/Homepage/Homepage'
+import Homepage from './Components/Homepage/Homepage';
+import ErrorPage from './Components/Error Page/ErrorPage';
 import
 {
   BrowserRouter as Router, Routes, Route
@@ -9,16 +11,18 @@ import
 
 function App()
 {
+  const [user, setLoginUser] = useState({})
   return (
     <div className="App">
       <Router>
         <Routes>
-          <Route path='/'><Homepage /></Route>
-          <Route path='/Login'><Login /></Route>
-          <Route path='/Register'></Route>
+          <Route exact path='/' element={user && user._id ? <Homepage /> : <Login setUser={setLoginUser} />}>
+          </Route>
+          <Route path='/login' element={<Login setUser={setLoginUser} />} ></Route>
+          <Route path='/register' element={<Register />}></Route>
+          <Route path='*' element={<ErrorPage />}></Route>
         </Routes>
       </Router>
-
     </div>
   );
 }
