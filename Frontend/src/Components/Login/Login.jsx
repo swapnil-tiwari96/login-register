@@ -28,7 +28,7 @@ const Login = ({ setLoginUser }) =>
             {
                 alert(res.data.message)
                 setLoginUser(res.data.user)
-                navigate('/dashboard', { replace: true })
+                navigate('/')
             })
     }
 

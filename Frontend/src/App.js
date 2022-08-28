@@ -16,13 +16,13 @@ function App()
     <div className="App">
       <Router>
         <Routes>
-          <Route exact path='/' element={user && user._id ? <Homepage /> : <Login setUser={setLoginUser} />}>
-          </Route>
-          <Route path='/login' element={<Login setUser={setLoginUser} />} ></Route>
+          <Route exact path='/' element={user && user._id ? <Homepage /> : <Login setLoginUser={setLoginUser} />}></Route>
+          <Route path='/login' element={<Login setLoginUser={setLoginUser} />} ></Route>
           <Route path='/register' element={<Register />}></Route>
           <Route path='*' element={<ErrorPage />}></Route>
         </Routes>
       </Router>
+
     </div>
   );
 }
