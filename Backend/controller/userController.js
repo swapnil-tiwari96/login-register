@@ -83,7 +83,17 @@ export const register = (req, res) =>
 
 }
 
-export const dashboard = (req, res) =>
+export const getData = (req, res) =>
 {
-    res.send("Dashboard")
+    User.find({}, (err, userList) =>
+    {
+        if (err)
+        {
+            res.send(err)
+        }
+        else
+        {
+            res.send(userList)
+        }
+    })
 }

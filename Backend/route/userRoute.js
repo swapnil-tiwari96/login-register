@@ -8,6 +8,6 @@ router.post('/login', userController.login);
 
 router.post('/register', userController.register);
 
-router.get('./getData', checkAuth, userController.dashboard)
+router.get('./getData', checkAuth, userController.getData)
 
 export { router }; 
