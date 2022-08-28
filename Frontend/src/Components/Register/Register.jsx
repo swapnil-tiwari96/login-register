@@ -20,12 +20,12 @@ const Register = () =>
     }
 
     return (
-        <div>
+        <div className="register">
             <input type="text" name="firstName" value={user.firstName} placeholder="First Name" onChange={handleChange} />
             <input type="text" name="lastName" value={user.lastName} placeholder="Last name" onChange={handleChange} />
             <input type="text" name="email" value={user.email} placeholder="Enter your Email" onChange={handleChange} />
             <input type="password" name="password" value={user.password} placeholder="Enter your Password" onChange={handleChange} />
-            <button>Register</button>
+            <button >Register</button>
             <div>or</div>
             <button>Login</button>
         </div>
