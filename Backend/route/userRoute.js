@@ -1,23 +1,12 @@
 import express from "express";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import User from "../model/userModel.js";
+import * as userController from '../controller/userController.js'
 
 let router = express.Router();
 
-router.get('/login', function (req, res)
-{
-    res.send("Login")
-});
+router.post('/login', userController.login);
 
-router.post('/register', function (req, res)
-{
-    res.send("Register")
-});
+router.post('/register', userController.register);
 
-router.get('./getData', function (req, res)
-{
-    res.send("dashboard")
-})
+router.get('./getData', userController.dashboard)
 
 export { router }; 
