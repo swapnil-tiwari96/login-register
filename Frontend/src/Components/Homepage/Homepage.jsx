@@ -6,6 +6,7 @@ const Homepage = () =>
 {
     const [userList, setUserList] = useState([])
     const [valueOf, setValueOf] = useState("")
+    const [order, setOrder] = useState("ASC")
 
     useEffect(() =>
     {
@@ -14,15 +15,37 @@ const Homepage = () =>
             .catch(err => console.log(err))
     }, [])
 
+    const sorting = (col) =>
+    {
+        if (order === 'ASC')
+        {
+            const sorted = [...userList]
+                .sort((a, b) =>
+                    a[col].toLowerCase() > b[col].toLowerCase() ? 1 : -1
+                )
+            setUserList(sorted)
+            setOrder('DSC')
+        }
+        if (order === 'DSC')
+        {
+            const sorted = [...userList]
+                .sort((a, b) =>
+                    a[col].toLowerCase() < b[col].toLowerCase() ? 1 : -1
+                )
+            setUserList(sorted)
+            setOrder('ASC')
+        }
+    }
+
     return (
         <div>
             <input type="text" placeholder="Search" value={valueOf} onChange={(e) => setValueOf(e.target.value)} />
             <table>
                 <thead>
                     <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
+                        <th onClick={sorting('firstName')}>First Name</th>
+                        <th onClick={sorting('lasttName')}>Last Name</th>
+                        <th onClick={sorting('email')}>Email</th>
                     </tr>
                 </thead>
                 <tbody>
