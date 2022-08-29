@@ -26,7 +26,7 @@ const Homepage = () =>
             setUserList(sorted)
             setOrder('DSC')
         }
-        if (order === 'DSC')
+        else if (order === 'DSC')
         {
             const sorted = [...userList]
                 .sort((a, b) =>
@@ -43,9 +43,9 @@ const Homepage = () =>
             <table>
                 <thead>
                     <tr>
-                        <th onClick={sorting('firstName')}>First Name</th>
-                        <th onClick={sorting('lasttName')}>Last Name</th>
-                        <th onClick={sorting('email')}>Email</th>
+                        <th onClick={() => sorting('firstName')}>First Name</th>
+                        <th onClick={() => sorting('lastName')}>Last Name</th>
+                        <th onClick={() => sorting('email')}>Email</th>
                     </tr>
                 </thead>
                 <tbody>
