@@ -72,7 +72,7 @@ export const register = (req, res) =>
                         }
                         else
                         {
-                            res.send("User Registered")
+                            res.send("Registered")
                         }
                     })
                 }
@@ -95,5 +95,5 @@ export const getData = (req, res) =>
         {
             res.send(userList)
         }
-    })
+    }).select('firstName lastName email')
 }
