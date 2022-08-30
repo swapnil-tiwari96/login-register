@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
+import Pagination from "./Pagination/Pagination";
 import './Homepage.css';
 import axios from 'axios'
 
 const Homepage = () =>
 {
-    const [userList, setUserList] = useState([])
-    const [valueOf, setValueOf] = useState("")
-    const [order, setOrder] = useState("ASC")
+    const [userList, setUserList] = useState([]);
+    const [valueOf, setValueOf] = useState("");
+    const [order, setOrder] = useState("ASC");
+    const [currentPage, setCurrentPage] = useState(1)
+    const [listPerPage] = useState(2)
 
     useEffect(() =>
     {
@@ -15,6 +18,15 @@ const Homepage = () =>
             .catch(err => console.log(err))
     }, [])
 
+    //Get current posts
+    const indexOfLastPost = currentPage * listPerPage;
+    const indexOfFirstPost = indexOfLastPost - listPerPage;
+    const currentList = userList.slice(indexOfFirstPost, indexOfLastPost);
+
+    // Change page
+    const paginate = (pageNumber) => setCurrentPage(pageNumber)
+
+    // Sorting
     const sorting = (col) =>
     {
         if (order === 'ASC')
@@ -39,6 +51,7 @@ const Homepage = () =>
 
     return (
         <div>
+            {/* Search */}
             <input type="text" placeholder="Search" value={valueOf} onChange={(e) => setValueOf(e.target.value)} />
             <table>
                 <thead>
@@ -49,7 +62,7 @@ const Homepage = () =>
                     </tr>
                 </thead>
                 <tbody>
-                    {userList
+                    {currentList
                         .filter(user => user.firstName.toLowerCase().includes(valueOf) ||
                             user.lastName.toLowerCase().includes(valueOf) || user.email.toLowerCase().includes(valueOf))
                         .map(user => (
@@ -61,10 +74,10 @@ const Homepage = () =>
 
                         ))}
                 </tbody>
+                <Pagination listPerPage={listPerPage} totalList={userList.length} paginate={paginate} />
             </table>
             <div>
-                <button >Prev</button>
-                <button > Next</button>
+
             </div>
         </div>
     );

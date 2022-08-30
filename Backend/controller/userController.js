@@ -30,7 +30,7 @@ export const login = (req, res) =>
                             expiresIn: "1h"
                         }
                     );
-                    return res.status(200).send({ message: "Authentication successfull", user: user });
+                    return res.send({ message: "Authentication successfull", token: token, user: user });
                 }
                 res.send("Authentication failed");
             });

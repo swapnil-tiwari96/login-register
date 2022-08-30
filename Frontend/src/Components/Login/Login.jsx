@@ -26,9 +26,13 @@ const Login = ({ setLoginUser }) =>
         axios.post("http://localhost:3001/login", user)
             .then(res =>
             {
-                alert(res.data.message)
-                setLoginUser(res.data.user)
-                navigate('/')
+                if (res.data.token)
+                {
+                    alert(res.data.message)
+                    setLoginUser(res.data.user)
+                    navigate('/')
+                }
+
             })
     }
 

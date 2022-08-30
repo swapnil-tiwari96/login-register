@@ -6,7 +6,7 @@ import Homepage from './Components/Homepage/Homepage';
 import ErrorPage from './Components/Error Page/ErrorPage';
 import
 {
-  BrowserRouter as Router, Routes, Route
+  BrowserRouter as Router, Routes, Route, Navigate
 } from "react-router-dom";
 
 function App()
@@ -16,7 +16,8 @@ function App()
     <div className="App">
       <Router>
         <Routes>
-          <Route exact path='/' element={user && user._id ? <Homepage /> : <Login setLoginUser={setLoginUser} />}></Route>
+          <Route exact path='/' element={user._id ? <Navigate to="/homepage" /> : <Login setLoginUser={setLoginUser} />}></Route>
+          <Route path='/homepage' element={<Homepage />} ></Route>
           <Route path='/login' element={<Login setLoginUser={setLoginUser} />} ></Route>
           <Route path='/register' element={<Register />}></Route>
           <Route path='*' element={<ErrorPage />}></Route>
