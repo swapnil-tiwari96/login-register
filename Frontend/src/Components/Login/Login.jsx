@@ -23,7 +23,7 @@ const Login = ({ setLoginUser }) =>
 
     const login = () =>
     {
-        axios.post("http://localhost:3001/login", user)
+        axios.post("https://login-register-swap.herokuapp.com/login", user)
             .then(res =>
             {
                 if (res.data.token)

@@ -28,7 +28,7 @@ const Register = () =>
         const { firstName, lastName, email, password } = user
         if (firstName && lastName && email && password)
         {
-            axios.post("http://localhost:3001/register", user)
+            axios.post("https://login-register-swap.herokuapp.com/register", user)
                 .then(res => alert(res.data))
 
         } else

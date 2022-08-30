@@ -13,7 +13,7 @@ const Homepage = () =>
 
     useEffect(() =>
     {
-        axios.get("http://localhost:3001/getData")
+        axios.get("https://login-register-swap.herokuapp.com/getData")
             .then(res => setUserList(res.data))
             .catch(err => console.log(err))
     }, [])
